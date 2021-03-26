@@ -1,4 +1,4 @@
-// "use strict";
+"use strict";
 var centigradeTemperature = prompt("Введите температуру воздуха по Цельсию", 20);
 var temperatureInFahrenheit = (9 / 5) * centigradeTemperature + 32;
 alert("Температура по Фаренгейту равна " + temperatureInFahrenheit + " фаренгейт");
