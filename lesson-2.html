@@ -1,0 +1,163 @@
+<script>
+  'use strict';
+
+  // 1)
+  var a = 1,
+    b = 1,
+    c, d;
+  c = ++a;
+  alert(c); // 2  - префиксный инкремент, сначала прибавляем 1, потом присваиваем значение переменной
+  d = b++;
+  alert(d); // 1  - постфиксный инкремент, сначала присваиваем значение переменной, потом прибавляем 1 
+  c = (2 + ++a);
+  alert(c);
+  /* 5  - после операции с переменной с переменная a имеет значение 2. 
+   Префиксный инкремент увеличивает переменную a еще на 1, получается 3.  2 + 3 = 5 */
+  d = (2 + b++);
+  alert(d); // 4  -  переменная b имеет значение 2, 2+2=4. Потом постфиксный инкремент увеличивает b до 3.
+  alert(a); // 3
+  alert(b); // 3
+
+
+  // 2)
+  var a = 2;
+  var x = 1 + (a *= 2); // x равен 5. Операции вычисляются справа налево
+  console.log(x); // 5
+
+
+  // 3)
+  let a = -24;
+  let b = 15;
+
+  if (a >= 0 && b >= 0) {
+    alert(a - b);
+  } else if (a < 0 && b < 0) {
+    alert(a * b);
+  } else {
+    alert(a + b);
+  }
+
+  //4)
+
+  let a = +prompt("Введите целое число от 0 по 15 включительно", "5");
+  switch (a) {
+    case 0:
+      alert(0);
+
+    case 1:
+      alert(1);
+
+    case 2:
+      alert(2);
+
+    case 3:
+      alert(3);
+
+    case 4:
+      alert(4);
+
+    case 5:
+      alert(5);
+
+    case 6:
+      alert(6);
+
+    case 7:
+      alert(7);
+
+    case 8:
+      alert(8);
+
+    case 9:
+      alert(9);
+
+    case 10:
+      alert(10);
+
+    case 11:
+      alert(11);
+
+    case 12:
+      alert(12);
+
+    case 13:
+      alert(13);
+
+    case 14:
+      alert(14);
+
+    case 15:
+      alert(15);
+      break;
+
+    default:
+      alert("Вы ввели некорректное значение");
+  }
+
+
+  let a = +prompt("Введите целое число от 0 по 15 включительно", "5");
+
+  function recursion() {
+    console.log(a++);
+    if (a <= 15) {
+      recursion();
+    }
+  }
+
+  recursion();
+
+  // 5)
+
+  function plus(arg1, arg2) {
+    return alert("Сумма первого и второго числа равна: " + (arg1 + arg2));
+  }
+
+  function minus(arg1, arg2) {
+    return alert("Разность первого и второго числа равна: " + (arg1 - arg2));
+  }
+
+  function multiply(arg1, arg2) {
+    return alert("Произведение первого и второго числа равно: " + (arg1 * arg2));
+  }
+
+  function divide(arg1, arg2) {
+    return alert("Частность первого и второго числа равна: " + (arg1 / arg2));
+  }
+
+
+  // 6)
+
+
+  function mathOperation(arg1, arg2, operation) {
+    switch (operation) {
+      case "плюс":
+        return plus(arg1, arg2);
+        break;
+
+      case "минус":
+        return minus(arg1, arg2);
+        break;
+
+      case "умножить":
+        return multiply(arg1, arg2);
+        break;
+
+      case "делить":
+        return divide(arg1, arg2);
+        break;
+
+      default:
+        alert("Введено неверное значение");
+        break;
+    }
+  }
+  mathOperation(20, 5, "умножить");
+
+  // 7)
+
+  // При сравнении значение разных типов, значения приводятся к числам, при этом null равно 0.
+  alert(null > 0); // false, т.к.  0 не больше 0
+  alert(null < 0); //  false, т.к.  0 не меньше 0
+  alert(null == 0); //  false, т.к.  null равна только себе самому и undefined 
+  alert(null >= 0); // true, т.к. 0 больше или равно 0.
+</script>
