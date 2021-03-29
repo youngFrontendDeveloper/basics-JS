@@ -1,0 +1,92 @@
+<script>
+  "use strict";
+
+  // 1. С помощью цикла while вывести все простые числа в промежутке от 0 до 100
+
+  let n = 3;
+  console.log(" Число 0 простое");
+  console.log(" Число 1 простое");
+  console.log(" Число 2 простое");
+
+  isPrime: while (n <= 100) {
+    let i = 2;
+    while (i < n) {
+      if (n % i !== 0) {
+        i++;
+      } else {
+        n++;
+        continue isPrime;
+      }
+    }
+    console.log(" Число " + n + " простое");
+    n++;
+  }
+
+
+  // 2. Реализовать функционал подсчета стоимости корзины в зависимости от находящихся в ней товаров
+
+  let cart = [40, 36, 50, 70, 46, 12, 358];
+  let sum = 0;
+  for (let i = 0; i < cart.length; i++) {
+    sum += cart[i];
+  }
+  console.log(sum);
+
+
+  // 3. a) Организовать такой массив для хранения товаров в корзине;
+
+  let basket = [{
+      title: "Картошка",
+      price: 40,
+      wt: 2
+    },
+    {
+      title: "Маркошка",
+      price: 36,
+      wt: 1
+    },
+    {
+      title: "Свеклошка",
+      price: 50,
+      wt: 1
+    },
+    {
+      title: "Лучочек",
+      price: 45,
+      wt: 0.5
+    },
+    {
+      title: "Укропчик",
+      price: 30,
+      wt: 0.2
+    },
+    {
+      title: "Петрушечка",
+      price: 35,
+      wt: 0.3
+    }
+  ]
+
+  // 3. b) Организовать функцию countBasketPrice, которая будет считать стоимость корзины.
+
+  function countBasketPrice() {
+    let sum = 0;
+    basket.forEach(function (item, basket) {
+      sum += item.price * item.wt
+    });
+    console.log(sum);
+  }
+  countBasketPrice();
+
+
+
+  // 4.*Вывести с помощью цикла for числа от 0 до 9, не используя тело цикла. 
+  for (let i = 0; i <= 9; console.log(i++)) {}
+
+
+  // 5) *Нарисовать пирамиду с помощью console.log
+  let str = "";
+  for (let i = 1; i < 21; i++) {
+    console.log(str += "x");
+  }
+</script>
