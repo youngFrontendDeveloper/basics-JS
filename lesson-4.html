@@ -23,6 +23,7 @@
 
   // 2. Для игры, реализованной на уроке, добавить возможность вывода хода номер n (номер задается пользователем)
 
+
   //3. На базе игры, созданной на уроке, реализовать игру «Кто хочет стать миллионером?»
 
   let arrayOfQuestions = [{
@@ -75,7 +76,6 @@
         return;
       } else if (userAnswer < -1 || userAnswer == 0 || userAnswer > 4) {
         alert("Вы ввели некорректное число");
-
       } else if (userAnswer == arrayOfQuestions[i]['correctAnswer']) {
         alert("Вы угадали! Ваш выигрыш составляет: " + (payoffSum += arrayOfQuestions[i]['payoff']));
       } else {
@@ -83,7 +83,7 @@
         return;
       }
     }
-    
+    alert("Спасибо за игру!");
   }
 
   game();
