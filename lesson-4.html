@@ -67,19 +67,23 @@
   function game() {
     for (let i = 0; i < arrayOfQuestions.length; i++) {
 
-      let userAnswer = +prompt(arrayOfQuestions[i]['qu'] + arrayOfQuestions[i]['answer1'] + arrayOfQuestions[i][
+      let userAnswer = prompt(arrayOfQuestions[i]['qu'] + arrayOfQuestions[i]['answer1'] + arrayOfQuestions[i][
         'answer2'
       ] + arrayOfQuestions[i]['answer3'] + arrayOfQuestions[i]['answer4'] + "-1 - Выход из игры'");
 
-      if (userAnswer == -1) {
+      if (userAnswer == -1 || userAnswer == null) {
         return;
+      } else if (userAnswer < -1 || userAnswer == 0 || userAnswer > 4) {
+        alert("Вы ввели некорректное число");
+
       } else if (userAnswer == arrayOfQuestions[i]['correctAnswer']) {
         alert("Вы угадали! Ваш выигрыш составляет: " + (payoffSum += arrayOfQuestions[i]['payoff']));
       } else {
-        alert("К сожалению, Вы проиграли и должны покинуть игру");
+        alert("К сожалению, Вы проиграли и должны покинуть игру. Выигранные Вами деньги остаются у меня.");
         return;
       }
     }
+    
   }
 
   game();
