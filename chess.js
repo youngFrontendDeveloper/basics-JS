@@ -76,10 +76,10 @@ function numbersStyles() {
     letters[i].style.flexDirection = "column";
     letters[i].style.justifyContent = "center";
     letters[i].style.alignItems = "space-between";
+    letters[i].style.margin = "0";
     letters[i].style.padding = "0";
     letters[i].style.listStyle = "none";
-    letters[i].style.textAlign = "center";
-    
+    letters[i].style.textAlign = "center";    
   }
 }
 
@@ -106,18 +106,20 @@ function createCenter(block) {
 }
 
 // Стили для центрального блока
-// Окрашиваем темные квадратики доски
+// Окрашиваем  квадратики доски
 function centerItemsBgColor() {
   "use strict";
   let arr = document.querySelectorAll(".center-item");
     for(let i = 0; i < arr.length; i++) {     
         if(i % 2 == 0) {         
           arr[i].style.backgroundColor = "#4a0909";         
+        } else {
+          arr[i].style.backgroundColor = "#ebe8e4";  
         }
       }
     }
 
-//Меняем расположение линий
+//Меняем расположение четных линий 
 function centerListsDirectionReverse() {
   "use strict";
   let arr = document.querySelectorAll(".center-list");
@@ -128,6 +130,64 @@ function centerListsDirectionReverse() {
       }
 }
 
+// Добавление шахматных фигурок
+// добавление офицеров
+function addofficers(arr1, arr2) {
+  "use strict";
+  
+  for(let k = 1; k < 3; k++) {
+    for(let i = 0, j = 0; i < 8; i++, j +=80) {
+      let piece = document.createElement("strong");
+      centerBlock.append(piece);
+      piece.style.position = "absolute";     
+      piece.style.left = (j + "px");
+      piece.style.display = "flex";
+      piece.style.justifyContent = "center";
+      piece.style.alignItems = "center";
+      piece.style. width = "80px";
+      piece.style.height = "80px";
+      piece.style.fontSize = "50px";      
+     
+      if(k == 1) {
+        piece.innerHTML = arr1[i]; 
+        piece.style.top = "560px";        
+      } else {
+        piece.innerHTML = arr2[i]; 
+        piece.style.top = "0";        
+        piece.style.transform = "rotate(180deg)";
+      }        
+    } 
+  } 
+}
+
+// добавление пешек
+function addPawns(a1, a2) {
+  "use strict";
+  for(let k = 1; k < 3; k++) {
+    for(let i = 0, j = 0; i < 8; i++, j +=80) {
+      let piece = document.createElement("strong");
+      centerBlock.append(piece);
+      piece.style.position = "absolute";
+      // piece.style.top = "480px";
+      piece.style.left = (j + "px");
+      piece.style.display = "flex";
+      piece.style.justifyContent = "center";
+      piece.style.alignItems = "center";
+      piece.style. width = "80px";
+      piece.style.height = "80px";
+      piece.style.fontSize = "50px";   
+      
+      if(k == 1) {
+        piece.innerHTML = a1; 
+        piece.style.top = "480px";        
+      } else {
+        piece.innerHTML = a2; 
+        piece.style.top = "80px";        
+        piece.style.transform = "rotate(180deg)";
+      }    
+    } 
+  }
+}
 
 // Создание блоков
 // Создаем верх
@@ -175,18 +235,30 @@ document.querySelector("#right__item").style.transform = "rotate(180deg)";
 numbersStyles(); 
 
 // Создаем центр
-let centerWrapper = document.createElement("div");
-centerBlock.append(centerWrapper);
-centerWrapper.classList.add("center-wrapper");
-createCenter(centerWrapper);
+
+createCenter(centerBlock);
 
 // Стили для центра
-centerWrapper.style.display = "flex";
-centerWrapper.style.flexWrap = "wrap";
-centerWrapper.style.border = "2px solid #4a0909";
-// centerWrapper.style.boxSizing = "";
+centerBlock.style.position = "relative";
+centerBlock.style.display = "flex";
+centerBlock.style.flexWrap = "wrap";
+centerBlock.style.border = "2px solid #4a0909";
 centerItemsBgColor();
 centerListsDirectionReverse();
+
+// Создаем шахматные фигурки
+let officersBlack = ["&#9820;", "&#9822;", "&#9821;", "&#9818;", "&#9819;", "&#9821;", "&#9822;", "&#9820;"];
+let pawnsBlack = "&#9823";
+let officersWhite = ["&#9814;", "&#9816;", "&#9815;", "&#9812;", "&#9813;", "&#9815;", "&#9816;", "&#9814;"];
+let pawnsWhite = "&#9817;";
+addofficers(officersBlack, officersWhite);
+addPawns(pawnsBlack, pawnsWhite);
+
+
+
+
+
+
 
 
 
