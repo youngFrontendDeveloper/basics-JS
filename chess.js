@@ -73,13 +73,12 @@ function createNumbers() {
       list.append(item);
       item.innerText = i;
       item.style.height = "80px";
-      item.style.lineHeight = "80px";
+      item.style.lineHeight = "80px";      
       if(j == 1) {
-        rightBlock.append(list);
-        list.style.flexDirection = "column-reverse";
-        list.style.transform = "rotate(180deg)";
-      } else {
-        leftBlock.append(list);
+        leftBlock.append(list); 
+      } else {        
+        rightBlock.append(list); 
+        item.style.transform = "rotate(180deg)";                  
       }
     }
   }
