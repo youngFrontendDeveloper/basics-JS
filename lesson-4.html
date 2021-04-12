@@ -1,0 +1,92 @@
+<script>
+  'use strict';
+
+  // 1. Написать функцию, преобразующую число в объект.
+
+  // let num = prompt("Введите число от 0 по 999 включительно", "356");
+
+  // function digitOfNumber(num) {
+  //   if (num > 999) {
+  //     console.log("Введенное число больше 999");
+  //     return {};
+  //   } else {
+  //     let obj = {
+  //       единицы: num[2],
+  //       десятки: num[1],
+  //       сотни: num[0],
+  //     }
+  //     return obj;
+  //   }
+  // }
+  // console.log(digitOfNumber(num));
+
+
+  // 2. Для игры, реализованной на уроке, добавить возможность вывода хода номер n (номер задается пользователем)
+
+
+  //3. На базе игры, созданной на уроке, реализовать игру «Кто хочет стать миллионером?»
+
+  let arrayOfQuestions = [{
+      qu: "Кто в настоящее время является президентом USA?\n",
+      answer1: "1 - Рейган\n",
+      answer2: "2 - Горбачев\n",
+      answer3: "3 - Байден\n",
+      answer4: "4 - Гейтс\n",
+      correctAnswer: 3,
+      payoff: 5000,
+    },
+    {
+      qu: "Какого цвета бывают крокодилы?\n",
+      answer1: "1 - красного\n",
+      answer2: "2 - синего\n",
+      answer3: "3 - ораньжевого\n",
+      answer4: "4 - зеленого\n",
+      correctAnswer: 4,
+      payoff: 10000,
+    },
+    {
+      qu: "Сколько пальцев на руке человека?\n",
+      answer1: "1 - один\n",
+      answer2: "2 - пять\n",
+      answer3: "3 - восемь\n",
+      answer4: "4 - четырнадцать\n",
+      correctAnswer: 2,
+      payoff: 50000,
+    },
+    {
+      qu: "Кто организовал восстание в 1773 – 1775 гг. ?\n",
+      answer1: "1 - Емельян Пугачев\n",
+      answer2: "2 - Степан Разин\n",
+      answer3: "3 - Алла Пугачева\n",
+      answer4: "4 - Герман Греф\n",
+      correctAnswer: 1,
+      payoff: 1000000,
+    },
+  ];
+  let payoffSum = 0;
+
+  function game() {
+    for (let i = 0; i < arrayOfQuestions.length; i++) {
+
+      let userAnswer = prompt(arrayOfQuestions[i]['qu'] + arrayOfQuestions[i]['answer1'] + arrayOfQuestions[i][
+        'answer2'
+      ] + arrayOfQuestions[i]['answer3'] + arrayOfQuestions[i]['answer4'] + "-1 - Выход из игры'");
+
+      if (userAnswer == -1 || userAnswer == null) {
+        return;
+      } else if (userAnswer < -1 || userAnswer == 0 || userAnswer > 4) {
+        alert("Вы ввели некорректное число");
+      } else if (userAnswer == arrayOfQuestions[i]['correctAnswer']) {
+        alert("Вы угадали! Ваш выигрыш составляет: " + (payoffSum += arrayOfQuestions[i]['payoff']));
+      } else {
+        alert(
+          "К сожалению, Вы проиграли и должны покинуть игру. Выигранные Вами деньги остаются у меня. Спасибо за игру!git "
+          );
+        return;
+      }
+    }
+    alert("Спасибо за игру!");
+  }
+
+  game();
+</script>
