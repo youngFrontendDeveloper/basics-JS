@@ -54,7 +54,6 @@ function prepareGameField() {
             // Создание ячейки
             var cell = document.createElement('td');
             cell.className = 'game-table-cell cell-' + i + '-' + j;
-
             row.appendChild(cell); // Добавление ячейки
         }
         game_table.appendChild(row); // Добавление строки
@@ -69,8 +68,8 @@ function startGame() {
     respawn();//создали змейку
 
     snake_timer = setInterval(move, SNAKE_SPEED);//каждые 200мс запускаем функцию move
-    danger_timer = setInterval(createDanger, 5000);
-    setTimeout(createFood, 5000);   
+    danger_timer = setInterval(createDanger, 5000); //каждые 5000мс запускаем функцию создания препятствий
+    setTimeout(createFood, 5000); // первоначальный запуск функции создания еды  
 }
 
 /**
@@ -85,11 +84,11 @@ function respawn() {
     var start_coord_y = Math.floor(FIELD_SIZE_Y / 2);
 
     // Хвост змейки
-    var snake_tail = document.getElementsByClassName('cell-' + start_coord_y + '-' + start_coord_x)[0];
-    snake_tail.setAttribute('class', snake_tail.getAttribute('class') + ' snake-unit');
+    var snake_tail = document.querySelector('.cell-' + start_coord_y + '-' + start_coord_x);   
+    snake_tail.classList.add("snake-unit");
     // Голова змейки
-    var snake_head = document.getElementsByClassName('cell-' + (start_coord_y - 1) + '-' + start_coord_x)[0];
-    snake_head.setAttribute('class', snake_head.getAttribute('class') + ' snake-unit');
+    var snake_head = document.querySelector('.cell-' + (start_coord_y - 1) + '-' + start_coord_x);
+    snake_head.classList.add('snake-unit');
 
     snake.push(snake_tail);
     snake.push(snake_head);
@@ -108,13 +107,23 @@ function move() {
     var snake_coords = snake_head_classes[1].split('-');//преобразовали строку в массив
     var coord_y = parseInt(snake_coords[1]);
     var coord_x = parseInt(snake_coords[2]);
-
+    if(coord_x == 0) {
+        coord_x = 19;
+    } else if(coord_x == 19) {
+        coord_x = 0;
+    } else if(coord_y == 0) {
+        coord_y = 19;
+    } else if(coord_y == 19) {
+        coord_y = 0;
+    }
+    
     // Определяем новую точку
     if (direction == 'x-') {
         new_unit = document.getElementsByClassName('cell-' + (coord_y) + '-' + (coord_x - 1))[0];
-    }
+    }   
     else if (direction == 'x+') {
         new_unit = document.getElementsByClassName('cell-' + (coord_y) + '-' + (coord_x + 1))[0];
+       
     }
     else if (direction == 'y+') {
         new_unit = document.getElementsByClassName('cell-' + (coord_y - 1) + '-' + (coord_x))[0];
@@ -122,13 +131,16 @@ function move() {
     else if (direction == 'y-') {
         new_unit = document.getElementsByClassName('cell-' + (coord_y + 1) + '-' + (coord_x))[0];
     }
+   console.log(new_unit);
+   console.log(coord_x);
+    
 
     // Проверки
     // 1) new_unit не часть змейки
     // 2) Змейка не ушла за границу поля
     // 3) Змейка не нашла на препятствие
     //console.log(new_unit);
-    if (!isSnakeUnit(new_unit) && new_unit !== undefined && !haveDanger(new_unit)) {
+    if (!isSnakeUnit(new_unit) && !haveDanger(new_unit)) {
         // Добавление новой части змейки        
         new_unit.classList.add('snake-unit');
         snake.push(new_unit);
